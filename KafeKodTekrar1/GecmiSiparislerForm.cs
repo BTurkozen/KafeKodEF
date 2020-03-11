@@ -13,8 +13,8 @@ namespace KafeKodTekrar1
 {
     public partial class GecmiSiparislerForm : Form
     {
-        KafeVeri db;
-        public GecmiSiparislerForm(KafeVeri _kafeVeri)
+        KafeContex db;
+        public GecmiSiparislerForm(KafeContex _kafeVeri)
         {
             db = _kafeVeri;
             InitializeComponent();

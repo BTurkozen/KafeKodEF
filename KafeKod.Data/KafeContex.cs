@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace KafeKod.Data
 {
-    public class KafeVeri
+    public class KafeContex
     {
-        public KafeVeri()
+        public KafeContex()
         {
             Urunler = new List<Urun>();
             AktifSiparisler = new List<Siparis>();

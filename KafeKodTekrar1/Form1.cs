@@ -16,7 +16,7 @@ namespace KafeKodTekrar1
     public partial class Form1 : Form
     {
         // Formun açılışında KafeKod.Data'dan  KafeVeri clasından degişken oluşturuyoruz. 
-        KafeVeri db;
+        KafeContex db;
 
         public Form1()
         {
@@ -85,14 +85,14 @@ namespace KafeKodTekrar1
                 //verileri tutacagımız strin degıskenını tanımlayarak json formatındakı dosyamızı atama işlemiyle aktarıyoruz.
                 string json = File.ReadAllText("veri.json");
                 //Kafeveri  için tanımladıgımız db nin içine olusturdugumuz json degıskenı ıle donusturerek  dbnin içine aktarıyoruz.
-                db = JsonConvert.DeserializeObject<KafeVeri>(json);
+                db = JsonConvert.DeserializeObject<KafeContex>(json);
             }
             catch (Exception)
             {
                 //catch'te excepsiın yakalaması durumunda 
                 //db yi yeniden olusturuyoruz.
                 //işlemlerin tekrardan yapılabılmesını saglıyoruz.
-                db = new KafeVeri();
+                db = new KafeContex();
             }
         }
 

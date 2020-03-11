@@ -16,10 +16,10 @@ namespace KafeKodTekrar1
     {
         
         public event EventHandler<MasaTasimaEventArgs> MasaTasiniyor;
-        KafeVeri db;
+        KafeContex db;
         Siparis siparis;
         BindingList<SiparisDetay> blSiparisdetaylari;
-        public SiparisForm(KafeVeri kafeveri, Siparis _siparis)
+        public SiparisForm(KafeContex kafeveri, Siparis _siparis)
         {
             db = kafeveri;
             this.siparis = _siparis;

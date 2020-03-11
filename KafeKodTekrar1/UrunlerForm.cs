@@ -13,9 +13,9 @@ namespace KafeKodTekrar1
 {
     public partial class UrunlerForm : Form
     {
-        KafeVeri db;
+        KafeContex db;
         BindingList<Urun> blUrunler;
-        public UrunlerForm(KafeVeri _kafeVeri)
+        public UrunlerForm(KafeContex _kafeVeri)
         {
             db = _kafeVeri;
             InitializeComponent();
