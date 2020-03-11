@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace KafeKod.Data
 {
-    public class KafeContex
+    public class KafeContex : DbContext
     {
-        public KafeContex()
+        public KafeContex() : base("name = KafeContex")
         {
-            Urunler = new List<Urun>();
-            AktifSiparisler = new List<Siparis>();
-            GecmisSiparisler = new List<Siparis>();
+
         }
-        public List<Urun> Urunler { get; set; }
-        public List<Siparis> AktifSiparisler { get; set; }
-        public List<Siparis> GecmisSiparisler { get; set; }
-        public int MasaAdet { get; set; } = 20;
+        public DbSet<Urun> Urunler { get; set; }
+        public DbSet<Siparis> Siparisler { get; set; }
+        public DbSet<SiparisDetay> SiparisDetay { get; set; }
+        
     }
 }

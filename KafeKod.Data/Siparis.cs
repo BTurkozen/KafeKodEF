@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,34 +8,23 @@ using System.Threading.Tasks;
 namespace KafeKod.Data
 {
     //SiparisOLustur adında bir "Enum" olusturuyoruz.
-    //İçine Siparis Dumunu bıldırıyoruz.
-    public enum SiparisDurum { Aktif, Odendi, Iptal } 
-
-   public class Siparis
-    {
-        public Siparis()
-        {
-            SiparisDetaylar = new List<SiparisDetay>();
-        }
+    //İçine Siparis Dumunu bildiriyoruz.
+    public enum SiparisDurum { Aktif, Odendi, Iptal }
+    [Table("Siparisler")]
+    public class Siparis
+    {      
+        public int Id { get; set; }
 
         public int MasaNo { get; set; }
+
         public DateTime? AcilisZamani { get; set; }
+
         public DateTime? KapanisZamani { get; set; }
+
         public SiparisDurum Durum { get; set; }
-        public List<SiparisDetay> SiparisDetaylar { get; set; }
+
+        public virtual List<SiparisDetay> SiparisDetaylar { get; set; }
+
         public decimal OdenenTutar { get; set; }
-
-        public string ToplamTutarTL
-        {
-            get 
-            {
-                return string.Format("{0:0.00}₺", ToplamTutar());
-            }
-        }
-        public decimal ToplamTutar()
-        {
-            return SiparisDetaylar.Sum(x => x.Tutar());
-        }
-
     }
 }

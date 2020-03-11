@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace KafeKod.Data
 {
-    public class Urun : IComparable
+    [Table("Urunler")]
+    public class Urun 
     {
-        public string UrunAd { get; set; }
-        public decimal BirimFiyat { get; set; }
+        public int Id { get; set; }
 
-        public int CompareTo(object obj)
-        {
-            return UrunAd.CompareTo(((Urun)obj).UrunAd);
-        }
+        [Required, MaxLength(50)]
+        public string UrunAd { get; set; }
+
+        
+        public decimal BirimFiyat { get; set; }
+        public virtual List<SiparisDetay> SiparisDetays { get; set; }
+
 
         public override string ToString()
         {
