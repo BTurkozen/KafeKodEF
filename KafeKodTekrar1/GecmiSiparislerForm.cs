@@ -20,7 +20,9 @@ namespace KafeKodTekrar1
             InitializeComponent();
             dgvSiparisler.AutoGenerateColumns = false;
             dgvSiparisDetaylari.AutoGenerateColumns = false;
-            dgvSiparisler.DataSource = db.GecmisSiparisler;
+            dgvSiparisler.DataSource = db.Siparisler.
+                Where(x => x.Durum != SiparisDurum.Aktif).
+                ToList();
         }
 
         private void dgvSiparisler_SelectionChanged(object sender, EventArgs e)

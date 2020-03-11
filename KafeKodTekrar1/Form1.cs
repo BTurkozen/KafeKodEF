@@ -15,23 +15,17 @@ namespace KafeKodTekrar1
 {
     public partial class Form1 : Form
     {
-        // Formun açılışında KafeKod.Data'dan  KafeVeri clasından degişken oluşturuyoruz. 
-        KafeContex db;
+        KafeContex db = new KafeContex();
+        
 
         public Form1()
         {
-            // Veri.json dosyasındaki verilerin okunmasını saglıyoruz.
-            VerileriOku();
-            InitializeComponent();
-            // masalari oluştururken iconların imajlarını hazırlıyoruz.
-            // Masa dolu ise farkli image boş ise farkli bir image geliyor.
-            //Imagelarımızı olusturduktan sonra for dongusu ile kafeveride tanımladıgımız masaadeti kadar Listview'e masa ekliyoruz.
+            InitializeComponent();  
             MasalariOlustur();
         }
 
         private void MasalariOlustur()
         {
-
             #region ListView İmajlarının Hazırlanması
             // İl isminde ListImage oluşturuyoruz. Imageların durumunu bunun içinde saklıyacagız.
             ImageList il = new ImageList();
@@ -45,22 +39,20 @@ namespace KafeKodTekrar1
             lvwMasalar.LargeImageList = il;
             #endregion
 
-            //Oluşturacagımız masaları item olarak ListViewİtem  ile tanımladıgımız lvi içine atacagız.
+          
             ListViewItem lvi;
-            //KafeVerinin içindeki masaadeti kadar burada for ile masa ekliyoruz.
-            for (int i = 1; i <= db.MasaAdet; i++)
+           
+            for (int i = 1; i <= Properties.Settings.Default.MasaAdet; i++)
             {
-                //ekliyeceğimiz masaların isimlerini i ile dondererek dondererek sayılar atıyoruz. 
+                
                 lvi = new ListViewItem("Masa " + i);
-                //FirstOtDefault = Bu tür bir öğe bulunamazsa, bir koşulu karşılayan dizinin ilk öğesini veya varsayılan değeri döndürür.
-                //Aktifsiparişlerin dolumu boşmu oldugu kontrol edilip aşağıdaki if kontrolünü saglıyoruz.
-                Siparis sip = db.AktifSiparisler.FirstOrDefault(x => x.MasaNo == i); 
-                //sip degişkenimiz null degerde yani boş ise 
+                
+                Siparis sip = db.Siparisler.FirstOrDefault
+                    (x => x.MasaNo == i && x.Durum == SiparisDurum.Aktif); 
+               
                 if (sip == null)
-                {
-                    //lvi'nin tagını i den çekiyıoruz.
-                    lvi.Tag = i;
-                    // ve durumunu boş masa olarak ayarlıyoruz.
+                { 
+                    lvi.Tag = i; 
                     lvi.ImageKey = "bos";
                 }
                 else
@@ -72,49 +64,16 @@ namespace KafeKodTekrar1
                 }
                 // lvwMasalar listview'de 
                 lvwMasalar.Items.Add(lvi);
+                db.SaveChanges();
             }
             
         }
 
-        private void VerileriOku() // Veri.json dosyamızda bulunan vbilgileri deserilization yontemi ile cagırıyoruz. 
-        {
-            try
-            {
-                //Verilerin okunmasında hata olması durumuna karşın try catch olarak 
-                //içinde veri çağırma işlemini gerçekleştiriyoruz.
-                //verileri tutacagımız strin degıskenını tanımlayarak json formatındakı dosyamızı atama işlemiyle aktarıyoruz.
-                string json = File.ReadAllText("veri.json");
-                //Kafeveri  için tanımladıgımız db nin içine olusturdugumuz json degıskenı ıle donusturerek  dbnin içine aktarıyoruz.
-                db = JsonConvert.DeserializeObject<KafeContex>(json);
-            }
-            catch (Exception)
-            {
-                //catch'te excepsiın yakalaması durumunda 
-                //db yi yeniden olusturuyoruz.
-                //işlemlerin tekrardan yapılabılmesını saglıyoruz.
-                db = new KafeContex();
-            }
-        }
-
-        private void OrnekVerileriYukle()
-        {
-            db.Urunler = new List<Urun>
-            {
-                new Urun{UrunAd = "Kola", BirimFiyat = 6.99m },
-                new Urun{UrunAd = "Fanta", BirimFiyat = 7.99m }
-            };
-            db.Urunler.Sort();
-        }
-
         private void lvwMasalar_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //ListViewMasalar objesine mouse eventi atayarak sol tıklanarak işlemleri gercekleştırmesı saglıyoruz.
             if (e.Button == MouseButtons.Left)
             {
-                //ListViewMasalar objesinde secili itemi lvi degıskenıne atıyoruz.(burada 0 harıcı bir deger girdiğimizde deger ataması hatası alıyoruz.)
                 var lvi = lvwMasalar.SelectedItems[0];
-                //Burada 0 olmasının ıkıncı sebebıde  masanın bos oldugunu belırtmek 
-                //lvi nin ImageKeyıne 'bos' ataması yapıyoruz.
                 lvi.ImageKey = "bos";
 
                 Siparis sip;
@@ -126,10 +85,12 @@ namespace KafeKodTekrar1
                 else
                 {
                     sip = new Siparis();
+                    sip.Durum = SiparisDurum.Aktif;
                     sip.MasaNo = (int)lvi.Tag;
                     sip.AcilisZamani = DateTime.Now;
                     lvi.Tag = sip;
-                    db.AktifSiparisler.Add(sip);
+                    db.Siparisler.Add(sip);
+                    db.SaveChanges();
                 }
                 SiparisForm frmSiparis = new SiparisForm(db, sip);
                 frmSiparis.MasaTasiniyor += FrmSiparis_MasaTasindi;
@@ -139,8 +100,6 @@ namespace KafeKodTekrar1
                 {
                     lvi.Tag = sip.MasaNo;
                     lvi.ImageKey = "bos";
-                    db.AktifSiparisler.Remove(sip);
-                    db.GecmisSiparisler.Add(sip);
                 }
 
             }
@@ -182,15 +141,13 @@ namespace KafeKodTekrar1
 
         private void tsmiUrunler_Click(object sender, EventArgs e)
         {
-            OrnekVerileriYukle();
             var frm = new UrunlerForm(db);
             frm.ShowDialog();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string json = JsonConvert.SerializeObject(db);
-            File.WriteAllText("veri.json", json);
+            db.Dispose();
         }
     }
 }

@@ -14,14 +14,13 @@ namespace KafeKodTekrar1
     public partial class UrunlerForm : Form
     {
         KafeContex db;
-        BindingList<Urun> blUrunler;
         public UrunlerForm(KafeContex _kafeVeri)
         {
             db = _kafeVeri;
             InitializeComponent();
             dgvUrunler.AutoGenerateColumns = false;
-            blUrunler = new BindingList<Urun>(db.Urunler);
-            dgvUrunler.DataSource = blUrunler;
+            dgvUrunler.DataSource = db.Urunler.ToList();
+            dgvUrunler.DataSource = db.Urunler.OrderBy(x => x.UrunAd).ToList();
         }
 
         private void btnEkle_Click(object sender, EventArgs e)
@@ -32,18 +31,19 @@ namespace KafeKodTekrar1
                 MessageBox.Show("Lütfen Bir Ürün Adı Seçiniz.");
                 return;
             }
-            blUrunler.Add(new Urun
+            db.Urunler.Add(new Urun
             {
                 UrunAd = urunAd,
                 BirimFiyat = nudBirimFiyat.Value
 
             });
-            db.Urunler.Sort();
+            db.SaveChanges();
+            dgvUrunler.DataSource = db.Urunler.OrderBy(x => x.UrunAd).ToList();
         }
 
         private void dgvUrunler_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
-            MessageBox.Show("GEçersiz Bir Değer Girdiniz.");
+            MessageBox.Show("Geçersiz Bir Değer Girdiniz.");
         }
 
         private void dgvUrunler_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -58,6 +58,7 @@ namespace KafeKodTekrar1
                 else
                 {
                     dgvUrunler.Rows[e.RowIndex].ErrorText = "";
+                    db.SaveChanges();
                 }
             }
         }
