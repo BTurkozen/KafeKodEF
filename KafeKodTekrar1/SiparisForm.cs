@@ -28,12 +28,10 @@ namespace KafeKodTekrar1
             dgvSiparisDetaylari.AutoGenerateColumns = false;
             MasaNolariYukle();
             MasaNoGuncelle();
-            TutarGuncelle();
-            cboUrun.DataSource = db.Urunler.ToList();
+            cboUrun.DataSource = db.Urunler.Where(x => x.StokdaYok == false).ToList();
+            TutarGuncelle(); 
             //cboUrun.SelectedItem = null;
-            dgvSiparisDetaylari.DataSource = siparis.SiparisDetaylar;
-            
-            
+            dgvSiparisDetaylari.DataSource = siparis.SiparisDetaylar;    
         }
 
         #region TutarGuncelle, MasaNolariYukle, MasaNoGuncelle Metotları
@@ -54,14 +52,12 @@ namespace KafeKodTekrar1
                 }
             }
         }
-
         private void MasaNoGuncelle()
         {
             Text = "Masa " + siparis.MasaNo;
             lblMasaNo.Text = siparis.MasaNo.ToString("00");
         }
         #endregion
-
         private void btnSiparisEkle_Click(object sender, EventArgs e)
         {
             if (cboUrun.SelectedItem == null)

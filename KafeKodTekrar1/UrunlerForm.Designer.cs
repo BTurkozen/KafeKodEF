@@ -32,11 +32,12 @@
             this.nudBirimFiyat = new System.Windows.Forms.NumericUpDown();
             this.txtUrunAd = new System.Windows.Forms.TextBox();
             this.dgvUrunler = new System.Windows.Forms.DataGridView();
-            this.clmUrunAd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBirimFiyat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.clmUrunAd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBirimFiyat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStok = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.nudBirimFiyat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUrunler)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -93,7 +94,8 @@
             this.dgvUrunler.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUrunler.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmUrunAd,
-            this.clmBirimFiyat});
+            this.clmBirimFiyat,
+            this.clmStok});
             this.dgvUrunler.GridColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dgvUrunler.Location = new System.Drawing.Point(5, 99);
             this.dgvUrunler.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -102,20 +104,9 @@
             this.dgvUrunler.Size = new System.Drawing.Size(756, 573);
             this.dgvUrunler.TabIndex = 20;
             this.dgvUrunler.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvUrunler_CellValidating);
+            
             this.dgvUrunler.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvUrunler_DataError);
             this.dgvUrunler.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dgvUrunler_UserDeletingRow);
-            // 
-            // clmUrunAd
-            // 
-            this.clmUrunAd.DataPropertyName = "UrunAd";
-            this.clmUrunAd.HeaderText = "Ürün Ad";
-            this.clmUrunAd.Name = "clmUrunAd";
-            // 
-            // clmBirimFiyat
-            // 
-            this.clmBirimFiyat.DataPropertyName = "BirimFiyat";
-            this.clmBirimFiyat.HeaderText = "Birim Fiyatı";
-            this.clmBirimFiyat.Name = "clmBirimFiyat";
             // 
             // label1
             // 
@@ -158,6 +149,24 @@
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
             // 
+            // clmUrunAd
+            // 
+            this.clmUrunAd.DataPropertyName = "UrunAd";
+            this.clmUrunAd.HeaderText = "Ürün Ad";
+            this.clmUrunAd.Name = "clmUrunAd";
+            // 
+            // clmBirimFiyat
+            // 
+            this.clmBirimFiyat.DataPropertyName = "BirimFiyat";
+            this.clmBirimFiyat.HeaderText = "Birim Fiyatı";
+            this.clmBirimFiyat.Name = "clmBirimFiyat";
+            // 
+            // clmStok
+            // 
+            this.clmStok.DataPropertyName = "StokdaYok";
+            this.clmStok.HeaderText = "Stokta Yok";
+            this.clmStok.Name = "clmStok";
+            // 
             // UrunlerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -171,6 +180,7 @@
             this.Name = "UrunlerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ürünler";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UrunlerForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.nudBirimFiyat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUrunler)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -190,5 +200,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUrunAd;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBirimFiyat;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clmStok;
     }
 }

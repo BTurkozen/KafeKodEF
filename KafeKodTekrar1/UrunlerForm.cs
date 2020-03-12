@@ -57,17 +57,29 @@ namespace KafeKodTekrar1
                 }
                 else
                 {
-                    dgvUrunler.Rows[e.RowIndex].ErrorText = "";
-                    db.SaveChanges();
-                }
+                    dgvUrunler.Rows[e.RowIndex].ErrorText = "";                  
+                }    
             }
+            db.SaveChanges();
         }
 
         private void dgvUrunler_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             Urun urun = (Urun)e.Row.DataBoundItem;
+
+            if (urun.SiparisDetays.Count > 0)
+            {
+                MessageBox.Show("Bu ürün geçmiş siparişlerde ilişkili olduğu için silinemez!!!");
+                e.Cancel = true;
+                return;   
+            }
             db.Urunler.Remove(urun);
             db.SaveChanges();
+        }
+
+        private void UrunlerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            txtUrunAd.Focus();
         }
     }
 }
