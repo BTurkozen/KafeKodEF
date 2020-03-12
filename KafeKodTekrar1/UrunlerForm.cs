@@ -20,7 +20,7 @@ namespace KafeKodTekrar1
             InitializeComponent();
             dgvUrunler.AutoGenerateColumns = false;
             dgvUrunler.DataSource = db.Urunler.ToList();
-            dgvUrunler.DataSource = db.Urunler.OrderBy(x => x.UrunAd).ToList();
+            dgvUrunler.DataSource = new BindingSource(db.Urunler.OrderBy(x => x.UrunAd).ToList(), null);
         }
 
         private void btnEkle_Click(object sender, EventArgs e)
@@ -38,7 +38,7 @@ namespace KafeKodTekrar1
 
             });
             db.SaveChanges();
-            dgvUrunler.DataSource = db.Urunler.OrderBy(x => x.UrunAd).ToList();
+            dgvUrunler.DataSource = new BindingSource(db.Urunler.OrderBy(x => x.UrunAd).ToList(), null);
         }
 
         private void dgvUrunler_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -61,6 +61,13 @@ namespace KafeKodTekrar1
                     db.SaveChanges();
                 }
             }
+        }
+
+        private void dgvUrunler_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            Urun urun = (Urun)e.Row.DataBoundItem;
+            db.Urunler.Remove(urun);
+            db.SaveChanges();
         }
     }
 }

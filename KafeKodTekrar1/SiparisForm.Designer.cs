@@ -48,11 +48,11 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvSiparisDetaylari = new System.Windows.Forms.DataGridView();
-            this.clmUrunAd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBirimFiyat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmAdet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsSiparisDetaylari = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiSiparisDetaySil = new System.Windows.Forms.ToolStripMenuItem();
+            this.clmUrunAd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmAdet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBirimFiyat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.nudAdet)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -292,8 +292,8 @@
             this.dgvSiparisDetaylari.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSiparisDetaylari.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmUrunAd,
-            this.clmBirimFiyat,
-            this.clmAdet});
+            this.clmAdet,
+            this.clmBirimFiyat});
             this.dgvSiparisDetaylari.Location = new System.Drawing.Point(8, 148);
             this.dgvSiparisDetaylari.Name = "dgvSiparisDetaylari";
             this.dgvSiparisDetaylari.ReadOnly = true;
@@ -301,27 +301,6 @@
             this.dgvSiparisDetaylari.Size = new System.Drawing.Size(801, 301);
             this.dgvSiparisDetaylari.TabIndex = 19;
             this.dgvSiparisDetaylari.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvSiparisDetaylari_MouseClick);
-            // 
-            // clmUrunAd
-            // 
-            this.clmUrunAd.DataPropertyName = "UrunAd";
-            this.clmUrunAd.HeaderText = "Ürün Ad";
-            this.clmUrunAd.Name = "clmUrunAd";
-            this.clmUrunAd.ReadOnly = true;
-            // 
-            // clmBirimFiyat
-            // 
-            this.clmBirimFiyat.DataPropertyName = "BirimFiyat";
-            this.clmBirimFiyat.HeaderText = "Birim Fiyat";
-            this.clmBirimFiyat.Name = "clmBirimFiyat";
-            this.clmBirimFiyat.ReadOnly = true;
-            // 
-            // clmAdet
-            // 
-            this.clmAdet.DataPropertyName = "Adet";
-            this.clmAdet.HeaderText = "Adet";
-            this.clmAdet.Name = "clmAdet";
-            this.clmAdet.ReadOnly = true;
             // 
             // cmsSiparisDetaylari
             // 
@@ -336,6 +315,27 @@
             this.tsmiSiparisDetaySil.Size = new System.Drawing.Size(86, 22);
             this.tsmiSiparisDetaySil.Text = "Sil";
             this.tsmiSiparisDetaySil.Click += new System.EventHandler(this.tsmiSiparisDetaySil_Click);
+            // 
+            // clmUrunAd
+            // 
+            this.clmUrunAd.DataPropertyName = "UrunAd";
+            this.clmUrunAd.HeaderText = "Ürün Ad";
+            this.clmUrunAd.Name = "clmUrunAd";
+            this.clmUrunAd.ReadOnly = true;
+            // 
+            // clmAdet
+            // 
+            this.clmAdet.DataPropertyName = "Adet";
+            this.clmAdet.HeaderText = "Adet";
+            this.clmAdet.Name = "clmAdet";
+            this.clmAdet.ReadOnly = true;
+            // 
+            // clmBirimFiyat
+            // 
+            this.clmBirimFiyat.DataPropertyName = "BirimFiyat";
+            this.clmBirimFiyat.HeaderText = "Birim Fiyat";
+            this.clmBirimFiyat.Name = "clmBirimFiyat";
+            this.clmBirimFiyat.ReadOnly = true;
             // 
             // SiparisForm
             // 
@@ -388,7 +388,7 @@
         private System.Windows.Forms.ContextMenuStrip cmsSiparisDetaylari;
         private System.Windows.Forms.ToolStripMenuItem tsmiSiparisDetaySil;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUrunAd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmBirimFiyat;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmAdet;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBirimFiyat;
     }
 }
