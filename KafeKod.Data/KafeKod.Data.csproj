@@ -57,6 +57,10 @@
     <Compile Include="Migrations\202003111528553_ilk.designer.cs">
       <DependentUpon>202003111528553_ilk.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003121331221_CascadeDel.cs" />
+    <Compile Include="Migrations\202003121331221_CascadeDel.designer.cs">
+      <DependentUpon>202003121331221_CascadeDel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Siparis.cs" />
@@ -70,6 +74,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003111528553_ilk.resx">
       <DependentUpon>202003111528553_ilk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003121331221_CascadeDel.resx">
+      <DependentUpon>202003121331221_CascadeDel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
