@@ -41,7 +41,6 @@
             this.clmUrunAd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBirimFiyati = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmAdet = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSiparis = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSiparisler)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSiparisDetaylari)).BeginInit();
             this.SuspendLayout();
@@ -141,8 +140,7 @@
             this.dgvSiparisDetaylari.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmUrunAd,
             this.clmBirimFiyati,
-            this.clmAdet,
-            this.clmSiparis});
+            this.clmAdet});
             this.dgvSiparisDetaylari.Location = new System.Drawing.Point(16, 430);
             this.dgvSiparisDetaylari.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvSiparisDetaylari.Name = "dgvSiparisDetaylari";
@@ -167,12 +165,6 @@
             this.clmAdet.DataPropertyName = "adet";
             this.clmAdet.HeaderText = "Adet";
             this.clmAdet.Name = "clmAdet";
-            // 
-            // clmSiparis
-            // 
-            this.clmSiparis.DataPropertyName = "Siparis";
-            this.clmSiparis.HeaderText = "Sipariş";
-            this.clmSiparis.Name = "clmSiparis";
             // 
             // GecmiSiparislerForm
             // 
@@ -208,6 +200,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUrunAd;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBirimFiyati;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmAdet;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSiparis;
     }
 }

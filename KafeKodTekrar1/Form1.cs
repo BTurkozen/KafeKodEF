@@ -39,7 +39,7 @@ namespace KafeKodTekrar1
             lvwMasalar.LargeImageList = il;
             #endregion
 
-          
+            lvwMasalar.Items.Clear();
             ListViewItem lvi;
            
             for (int i = 1; i <= Properties.Settings.Default.MasaAdet; i++)
@@ -148,6 +148,16 @@ namespace KafeKodTekrar1
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             db.Dispose();
+        }
+
+        private void tsmiAyarlar_Click(object sender, EventArgs e)
+        {
+            var frm = new AyarlarForm();
+            DialogResult dr = frm.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                MasalariOlustur();
+            }
         }
     }
 }

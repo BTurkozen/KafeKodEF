@@ -32,6 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsmiUrunler = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiGecmisSiparisler = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAyarlar = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,10 +54,11 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiUrunler,
-            this.tsmiGecmisSiparisler});
+            this.tsmiGecmisSiparisler,
+            this.tsmiAyarlar});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
@@ -80,6 +82,14 @@
             this.tsmiGecmisSiparisler.Size = new System.Drawing.Size(129, 20);
             this.tsmiGecmisSiparisler.Text = "Geçmiş Siparişler";
             this.tsmiGecmisSiparisler.Click += new System.EventHandler(this.tsmiGecmisSiparisler_Click);
+            // 
+            // tsmiAyarlar
+            // 
+            this.tsmiAyarlar.Font = new System.Drawing.Font("Arial", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.tsmiAyarlar.Name = "tsmiAyarlar";
+            this.tsmiAyarlar.Size = new System.Drawing.Size(65, 20);
+            this.tsmiAyarlar.Text = "Ayarlar";
+            this.tsmiAyarlar.Click += new System.EventHandler(this.tsmiAyarlar_Click);
             // 
             // Form1
             // 
@@ -107,6 +117,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tsmiUrunler;
         private System.Windows.Forms.ToolStripMenuItem tsmiGecmisSiparisler;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAyarlar;
     }
 }
 
